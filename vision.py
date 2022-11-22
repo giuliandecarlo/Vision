@@ -6,10 +6,11 @@ import random
 from gtts import gTTS
 import yaml
 import datetime
+import skills
 
 config = yaml.safe_load(open('config/config.yml', 'rb'))
 WAKE_WORDS= ['ciao vision','ciao visione','buongiorno vision','buongiorno vision','buonasera visione','ehi vision','ehi visione']
-DATE_WORDS= ['ore']
+TIME_WORDS= ['ore','orario','che ora è']
 
 def main():
     while True:
@@ -53,26 +54,9 @@ def getAudio():
     return result
 
 def checkSkill(text_in):
-    for phrase in DATE_WORDS:
+    for phrase in TIME_WORDS:
         if phrase in text_in:
-            getDate()
-
-def getDate():
-    now= datetime.datetime.now()
-    hour=now.hour
-    minute=now.minute
-    day_num=now.day
-    month_num=now.month
-    year=now.year
-    if hour=="00":
-        text_out="è mezzanotte"
-    elif hour=="01":
-        text_out="è l'una"
-    else:
-        text_out="sono le "+str(hour)
-
-    text_out=text_out+" e "+str(minute)+" minuti "
-    response(text_out)
+            response(skills.getCurrentTime())
 
 
 if __name__=='__main__':
