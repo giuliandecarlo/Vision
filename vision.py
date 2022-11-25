@@ -11,6 +11,7 @@ import skills
 config = yaml.safe_load(open('config/config.yml', 'rb'))
 WAKE_WORDS= ['ciao vision','ciao visione','buongiorno vision','buongiorno vision','buonasera visione','ehi vision','ehi visione']
 TIME_WORDS= ['ore','orario','che ora è']
+WEATHER_WORDS=['che tempo fa ','meteo']
 
 def main():
     while True:
@@ -57,6 +58,13 @@ def checkSkill(text_in):
     for phrase in TIME_WORDS:
         if phrase in text_in:
             response(skills.getCurrentTime())
+            return
+
+    for phrase in WEATHER_WORDS:
+        if phrase in text_in:
+            city=text_in.split()[-1]
+            response(skills.getWeatherInfo(city))
+            return
 
 
 if __name__=='__main__':

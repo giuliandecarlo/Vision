@@ -8,4 +8,5 @@ pip install speechrecognition
 pip install gtts
 ```
 ## Skills:
-* Get current time
+* Get current time.
+* Get weather info.
