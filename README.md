@@ -7,3 +7,5 @@ pip install playsound
 pip install speechrecognition
 pip install gtts
 ```
+## Skills:
+* Get current time
