@@ -1,6 +1,8 @@
 import datetime
 import requests
+from random import randrange
 
+NOT_UND_MESS=['Mi spiace, ma al momento non riesco a comprendere ciò che hai detto. Cercherò di migliorare.','Purtroppo ora non sono ancora in grado di capire ciò che hai detto,riprova.']
 
 def getCurrentTime():
     now= datetime.datetime.now()
@@ -31,5 +33,11 @@ def getWeatherInfo(city):
         return(text_out)
     else:
         return("Mi spiace, ma non trovo la città che stai cercando.")
+    
+def notUnderstand():
+    ran=randrange(len(NOT_UND_MESS))
+    text_out=NOT_UND_MESS[ran]
+    return(text_out)
+
     
 

@@ -9,9 +9,10 @@ import datetime
 import skills
 
 config = yaml.safe_load(open('config/config.yml', 'rb'))
-WAKE_WORDS= ['ciao vision','ciao visione','buongiorno vision','buongiorno vision','buonasera visione','ehi vision','ehi visione']
+WAKE_WORDS= ['ciao vision','ciao visione','buongiorno vision','buongiorno vision','buonasera visione','ehi vision','ehi visione','ok vision','ok visione']
 TIME_WORDS= ['ore','orario','che ora è']
 WEATHER_WORDS=['che tempo fa ','meteo']
+
 
 def main():
     while True:
@@ -65,6 +66,7 @@ def checkSkill(text_in):
             city=text_in.split()[-1]
             response(skills.getWeatherInfo(city))
             return
+    response(skills.notUnderstand())
 
 
 if __name__=='__main__':
