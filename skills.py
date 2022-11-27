@@ -39,5 +39,44 @@ def notUnderstand():
     text_out=NOT_UND_MESS[ran]
     return(text_out)
 
-    
+def getCurrentDate():
+    now= datetime.datetime.now()
+    day=now.day
+    month=now.month
+    year=now.year
 
+    text_out="Oggi è il "
+    if day==1:
+        text_out=text_out+"primo "
+    else:
+        text_out=text_out+str(day)+" "
+    match month:
+        case 1:
+            text_out=text_out+"gennaio "
+        case 2:
+            text_out=text_out+"febbraio "
+        case 3:
+            text_out=text_out+"marzo "           
+        case 4:
+            text_out=text_out+"aprile "
+        case 5:
+            text_out=text_out+"maggio "
+        case 6:
+            text_out=text_out+"giugno "   
+        case 7:
+            text_out=text_out+"luglio "
+        case 8:
+            text_out=text_out+"agosto "
+        case 9:
+            text_out=text_out+"settembre "
+        case 10:
+            text_out=text_out+"ottobre "
+        case 11:
+            text_out=text_out+"novembre "
+        case 12:
+            text_out=text_out+"dicembre "
+        case _:
+            text_out=text_out+str(now.month)+" "
+    
+    text_out=text_out+"del "+str(year)
+    return(text_out)

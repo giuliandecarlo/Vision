@@ -10,3 +10,4 @@ pip install gtts
 ## Skills:
 * Get current time.
 * Get weather info.
+* Get current date.
