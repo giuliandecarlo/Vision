@@ -1,6 +1,7 @@
 import datetime
 import requests
 from random import randrange
+import wikipedia
 
 NOT_UND_MESS=['Mi spiace, ma al momento non riesco a comprendere ciò che hai detto. Cercherò di migliorare.','Purtroppo ora non sono ancora in grado di capire ciò che hai detto,riprova.']
 
@@ -80,3 +81,10 @@ def getCurrentDate():
     
     text_out=text_out+"del "+str(year)
     return(text_out)
+
+def wikipediaSearch(topic):
+    try:
+        wikipedia.set_lang("it")
+        return(wikipedia.summary(topic,sentences=2))
+    except:
+        return("C'è stato un errore nella tua ricerca, riprova cercando qualcos'altro.")

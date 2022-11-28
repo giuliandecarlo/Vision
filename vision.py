@@ -13,6 +13,7 @@ WAKE_WORDS= ['ciao vision','ciao visione','buongiorno vision','buongiorno vision
 TIME_WORDS= ['ore','orario','che ora è']
 WEATHER_WORDS=['che tempo fa ','meteo']
 DATE_WORDS=['che giorno è','quante ne abbiamo oggi']
+WIKI_WORDS=['fai una ricerca su','parlami di','trova informazioni su']
 
 
 def main():
@@ -67,11 +68,24 @@ def checkSkill(text_in):
             city=text_in.split()[-1]
             response(skills.getWeatherInfo(city))
             return
+
+    for phrase in WIKI_WORDS:
+        for phrase1 in WAKE_WORDS:
+            if phrase1 in text_in:
+                text_in=text_in.replace(phrase1,'')
+        if phrase in text_in:
+            topic=text_in.replace(phrase,'')
+            response(skills.wikipediaSearch(topic))
+            return
+            
     for phrase in DATE_WORDS:
         if phrase in text_in:
             response(skills.getCurrentDate())
             return
+        
+
     response(skills.notUnderstand())
+
 
 
 if __name__=='__main__':
