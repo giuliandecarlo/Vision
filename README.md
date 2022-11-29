@@ -13,3 +13,4 @@ pip install wikipedia
 * Get weather info.
 * Get current date.
 * Search something on Wikipedia.
+* Calculate how many days from today to given date.

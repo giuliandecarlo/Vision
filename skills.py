@@ -51,35 +51,13 @@ def getCurrentDate():
         text_out=text_out+"primo "
     else:
         text_out=text_out+str(day)+" "
-    match month:
-        case 1:
-            text_out=text_out+"gennaio "
-        case 2:
-            text_out=text_out+"febbraio "
-        case 3:
-            text_out=text_out+"marzo "           
-        case 4:
-            text_out=text_out+"aprile "
-        case 5:
-            text_out=text_out+"maggio "
-        case 6:
-            text_out=text_out+"giugno "   
-        case 7:
-            text_out=text_out+"luglio "
-        case 8:
-            text_out=text_out+"agosto "
-        case 9:
-            text_out=text_out+"settembre "
-        case 10:
-            text_out=text_out+"ottobre "
-        case 11:
-            text_out=text_out+"novembre "
-        case 12:
-            text_out=text_out+"dicembre "
-        case _:
-            text_out=text_out+str(now.month)+" "
-    
-    text_out=text_out+"del "+str(year)
+    months={1:'gennaio',2:'febbraio',3:'marzo',
+            4:'aprile',5:'maggio',6:'giugno',
+            7:'luglio',8:'agosto',9:'settembre',
+            10:'ottobre',11:'novembre',12:'dicembre'}
+
+    text_out=text_out+months[month]
+    text_out=text_out+" del "+str(year)
     return(text_out)
 
 def wikipediaSearch(topic):
@@ -88,3 +66,27 @@ def wikipediaSearch(topic):
         return(wikipedia.summary(topic,sentences=2))
     except:
         return("C'è stato un errore nella tua ricerca, riprova cercando qualcos'altro.")
+
+def howMuchDays(date):
+    months={'gennaio':1,'febbraio':2,'marzo':3,
+            'aprile':4,'maggio':5,'giugno':6,
+            'luglio':7,'agosto':8,'settembre':9,
+            'ottobre':10,'novembre':11,'dicembre':12}
+    try:
+        now=datetime.datetime.now()
+        if(date.split()[0]=='primo'):
+            day=1
+        else:
+            day=int(date.split()[0])
+
+        month=months[date.split()[1]]
+        if(len(date.split())==2):
+            year=now.year
+        else:
+            year=int(date.split()[2])
+        today=datetime.date.today()
+        future=datetime.date(year,month,day)
+        diff=(future-today).days
+        return("Mancano "+str(diff)+" giorni")
+    except:
+        return("C'è stato un errore nel calcolo dei giorni rimanenti.")

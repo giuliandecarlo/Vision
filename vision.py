@@ -9,11 +9,12 @@ import datetime
 import skills
 
 config = yaml.safe_load(open('config/config.yml', 'rb'))
-WAKE_WORDS= ['ciao vision','ciao visione','buongiorno vision','buongiorno vision','buonasera visione','ehi vision','ehi visione','ok vision','ok visione']
+WAKE_WORDS= ['ciao visione','ciao vision','buongiorno visione','buongiorno vision','buonasera visione','buonasera vision','ehi visione','ehi vision','ok visione','ok vision']
 TIME_WORDS= ['ore','orario','che ora è']
 WEATHER_WORDS=['che tempo fa ','meteo']
 DATE_WORDS=['che giorno è','quante ne abbiamo oggi']
 WIKI_WORDS=['fai una ricerca su','parlami di','trova informazioni su']
+HOW_MUCH_DAYS_WORDS=['quanto manca al','quanto manca a','quanti giorni mancano al','quanti giorni mancano a']
 
 
 def main():
@@ -82,7 +83,15 @@ def checkSkill(text_in):
         if phrase in text_in:
             response(skills.getCurrentDate())
             return
-        
+
+    for phrase in HOW_MUCH_DAYS_WORDS:
+        for phrase1 in WAKE_WORDS:
+            if phrase1 in text_in:
+                text_in=text_in.replace(phrase1,'')
+        if phrase in text_in:
+            date=text_in.replace(phrase,'')
+            response(skills.howMuchDays(date))
+            return
 
     response(skills.notUnderstand())
 
