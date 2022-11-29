@@ -67,13 +67,14 @@ def wikipediaSearch(topic):
     except:
         return("C'è stato un errore nella tua ricerca, riprova cercando qualcos'altro.")
 
-def howMuchDays(date):
+def howManyDays(date):
     months={'gennaio':1,'febbraio':2,'marzo':3,
             'aprile':4,'maggio':5,'giugno':6,
             'luglio':7,'agosto':8,'settembre':9,
             'ottobre':10,'novembre':11,'dicembre':12}
     try:
         now=datetime.datetime.now()
+        today=datetime.date.today()
         if(date.split()[0]=='primo'):
             day=1
         else:
@@ -81,10 +82,12 @@ def howMuchDays(date):
 
         month=months[date.split()[1]]
         if(len(date.split())==2):
-            year=now.year
+            if(datetime.date(now.year,month,day)<today):
+                year=now.year+1
+            else:
+                year=now.year
         else:
             year=int(date.split()[2])
-        today=datetime.date.today()
         future=datetime.date(year,month,day)
         diff=(future-today).days
         return("Mancano "+str(diff)+" giorni")

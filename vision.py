@@ -90,7 +90,7 @@ def checkSkill(text_in):
                 text_in=text_in.replace(phrase1,'')
         if phrase in text_in:
             date=text_in.replace(phrase,'')
-            response(skills.howMuchDays(date))
+            response(skills.howManyDays(date))
             return
 
     response(skills.notUnderstand())
