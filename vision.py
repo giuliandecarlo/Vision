@@ -2,7 +2,7 @@ import speech_recognition as sp
 import pyaudio
 import playsound
 import os
-import random
+from random import randrange
 from gtts import gTTS
 import yaml
 import datetime
@@ -15,6 +15,8 @@ WEATHER_WORDS=['che tempo fa ','meteo']
 DATE_WORDS=['che giorno è','quante ne abbiamo oggi']
 WIKI_WORDS=['fai una ricerca su','parlami di','trova informazioni su']
 HOW_MUCH_DAYS_WORDS=['quanto manca al','quanto manca a','quanti giorni mancano al','quanti giorni mancano a']
+CLOSE_WORDS=['spegniti','puoi spegnerti','spegnimento']
+CLOSE_MESS=['è stato un piacere, a presto.','arrivederci.','perfetto, a presto.']
 
 
 def main():
@@ -43,6 +45,13 @@ def wakeBot(text_in):
     for phrase in WAKE_WORDS:
         if phrase in text_in:
             return True
+
+def closeVocalAssistant():
+    print("Vision: In chiusura...")
+    ran=randrange(len(CLOSE_MESS))
+    text_out=CLOSE_MESS[ran]
+    response(text_out)
+    exit()
 
 def getAudio():
     r=sp.Recognizer()
@@ -92,6 +101,10 @@ def checkSkill(text_in):
             date=text_in.replace(phrase,'')
             response(skills.howManyDays(date))
             return
+    
+    for phrase in CLOSE_WORDS:
+        if phrase in text_in:
+            closeVocalAssistant()
 
     response(skills.notUnderstand())
 
