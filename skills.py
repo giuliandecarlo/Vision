@@ -1,6 +1,6 @@
 import datetime
 import requests
-from random import randrange
+import random
 import wikipedia
 
 NOT_UND_MESS=['Mi spiace, ma al momento non riesco a comprendere ciò che hai detto. Cercherò di migliorare.','Purtroppo ora non sono ancora in grado di capire ciò che hai detto,riprova.']
@@ -36,7 +36,7 @@ def getWeatherInfo(city):
         return("Mi spiace, ma non trovo la città che stai cercando.")
     
 def notUnderstand():
-    ran=randrange(len(NOT_UND_MESS))
+    ran=random.randrange(len(NOT_UND_MESS))
     text_out=NOT_UND_MESS[ran]
     return(text_out)
 
@@ -93,3 +93,7 @@ def howManyDays(date):
         return("Mancano "+str(diff)+" giorni")
     except:
         return("C'è stato un errore nel calcolo dei giorni rimanenti.")
+
+def dice():
+    num=random.randint(1,6)
+    return("Ho lanciato il dado, il numero uscito è "+str(num))

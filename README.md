@@ -14,3 +14,4 @@ pip install wikipedia
 * Get current date.
 * Search something on Wikipedia.
 * Calculate how many days from today to given date.
+* Roll the dice.
