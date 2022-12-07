@@ -18,6 +18,7 @@ HOW_MUCH_DAYS_WORDS=['quanto manca al','quanto manca a','quanti giorni mancano a
 CLOSE_WORDS=['spegniti','puoi spegnerti','spegnimento']
 CLOSE_MESS=['è stato un piacere, a presto.','arrivederci.','perfetto, a presto.']
 DICE_WORDS=['lancia un dado','puoi lanciare un dado']
+RAND_WORDS=['dimmi un numero casuale tra','estrai un numero tra','estrai un numero casuale tra']
 
 
 def main():
@@ -110,6 +111,15 @@ def checkSkill(text_in):
     for phrase in DICE_WORDS:
         if phrase in text_in:
             response(skills.dice())
+            return
+
+    for phrase in RAND_WORDS:
+        for phrase1 in WAKE_WORDS:
+            if phrase1 in text_in:
+                text_in=text_in.replace(phrase1,'')
+        if phrase in text_in:
+            num=text_in.replace(phrase,'')
+            response(skills.randNum(num))
             return
 
     response(skills.notUnderstand())

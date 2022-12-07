@@ -97,3 +97,13 @@ def howManyDays(date):
 def dice():
     num=random.randint(1,6)
     return("Ho lanciato il dado, il numero uscito è "+str(num))
+
+def randNum(numString):
+    num=numString.split()
+    try:
+        n1=int(num[0])
+        n2=int(num[2])
+        n=random.randint(n1,n2)
+        return("Il numero estratto è "+str(n))
+    except:
+        return("C'è stato un errore. Riprova")
