@@ -19,7 +19,7 @@ CLOSE_WORDS=['spegniti','puoi spegnerti','spegnimento']
 CLOSE_MESS=['è stato un piacere, a presto.','arrivederci.','perfetto, a presto.']
 DICE_WORDS=['lancia un dado','puoi lanciare un dado']
 RAND_WORDS=['dimmi un numero casuale tra','estrai un numero tra','estrai un numero casuale tra']
-
+OFF_WORDS=['puoi spegnere il computer','spegni il computer','puoi spegnere il pc','spegni il pc']
 
 def main():
     while True:
@@ -121,6 +121,12 @@ def checkSkill(text_in):
             num=text_in.replace(phrase,'')
             response(skills.randNum(num))
             return
+
+    for phrase in OFF_WORDS:
+        if phrase in text_in:
+            response("Perfetto,inserisci la password e il sistema si spegnerà.")
+            skills.shutdownDevice()
+            return    
 
     response(skills.notUnderstand())
 

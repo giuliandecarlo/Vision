@@ -2,6 +2,7 @@ import datetime
 import requests
 import random
 import wikipedia
+import os
 
 NOT_UND_MESS=['Mi spiace, ma al momento non riesco a comprendere ciò che hai detto. Cercherò di migliorare.','Purtroppo ora non sono ancora in grado di capire ciò che hai detto,riprova.']
 
@@ -107,3 +108,6 @@ def randNum(numString):
         return("Il numero estratto è "+str(n))
     except:
         return("C'è stato un errore. Riprova")
+
+def shutdownDevice():
+    os.system("sudo shutdown -h now")

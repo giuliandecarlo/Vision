@@ -16,3 +16,4 @@ pip install wikipedia
 * Calculate how many days from today to given date.
 * Roll the dice.
 * Generate a random number.
+* Shutdown the computer.
