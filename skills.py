@@ -3,6 +3,7 @@ import requests
 import random
 import wikipedia
 import os
+import psutil
 
 NOT_UND_MESS=['Mi spiace, ma al momento non riesco a comprendere ciò che hai detto. Cercherò di migliorare.','Purtroppo ora non sono ancora in grado di capire ciò che hai detto,riprova.']
 
@@ -111,3 +112,12 @@ def randNum(numString):
 
 def shutdownDevice():
     os.system("sudo shutdown -h now")
+
+def batteryInfo():
+    battery=psutil.sensors_battery()
+    plugged=battery.power_plugged
+    percent=battery.percent
+    if plugged is True:
+        return("La batteria è in carica, e al momento è al "+str(percent)+" %")
+    else:
+        return("La batteria non è in carica, e al momento è al "+str(percent)+" %")

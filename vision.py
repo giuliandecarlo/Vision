@@ -20,6 +20,7 @@ CLOSE_MESS=['è stato un piacere, a presto.','arrivederci.','perfetto, a presto.
 DICE_WORDS=['lancia un dado','puoi lanciare un dado']
 RAND_WORDS=['dimmi un numero casuale tra','estrai un numero tra','estrai un numero casuale tra']
 OFF_WORDS=['puoi spegnere il computer','spegni il computer','puoi spegnere il pc','spegni il pc']
+BATTERY_WORDS=['mi dai informazioni sulla batteria','qual è la percentuale della batteria','il computer è in carica','info sulla batteria']
 
 def main():
     while True:
@@ -126,7 +127,12 @@ def checkSkill(text_in):
         if phrase in text_in:
             response("Perfetto,inserisci la password e il sistema si spegnerà.")
             skills.shutdownDevice()
-            return    
+            return
+
+    for phrase in BATTERY_WORDS:
+        if phrase in text_in:
+            response(skills.batteryInfo())
+            return     
 
     response(skills.notUnderstand())
 
