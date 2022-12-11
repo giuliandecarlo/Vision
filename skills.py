@@ -149,5 +149,29 @@ def translate(text):
                 translator=Translator(from_lang="italian",to_lang="chinese")
                 translation=translator.translate(message)
                 return(str(translation))
+            case other:
+               return("Mi spiace, c'è stato un errore nella traduzione.") 
     except:
         return("Mi spiace, c'è stato un errore nella traduzione.")
+
+def calculator(text):
+    try:
+        words=text.split()
+        operation=words[1]
+        match(operation):
+            case '+':
+                result=int(words[0])+int(words[2])
+                return("Il risultato è: "+str(result))
+            case '*':
+                result=int(words[0])*int(words[2])
+                return("Il risultato è: "+str(result))
+            case 'meno':
+                result=int(words[0])-int(words[2])
+                return("Il risultato è: "+str(result))
+            case 'diviso':
+                result=int(words[0])/int(words[2])
+                return("Il risultato è: "+str(result))
+            case other:
+                return("C'è stato un problema nel calcolare il risultato, riprova.")
+    except:
+        return("C'è stato un problema nel calcolare il risultato, riprova.")
