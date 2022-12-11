@@ -4,6 +4,7 @@ import random
 import wikipedia
 import os
 import psutil
+from translate import Translator
 
 NOT_UND_MESS=['Mi spiace, ma al momento non riesco a comprendere ciò che hai detto. Cercherò di migliorare.','Purtroppo ora non sono ancora in grado di capire ciò che hai detto,riprova.']
 
@@ -121,3 +122,32 @@ def batteryInfo():
         return("La batteria è in carica, e al momento è al "+str(percent)+" %")
     else:
         return("La batteria non è in carica, e al momento è al "+str(percent)+" %")
+
+def translate(text):
+    try:
+        words=text.split()
+        print(words)
+        message=words[0]
+        match(words[2]):
+            case 'inglese':
+                translator=Translator(from_lang="italian",to_lang="english")
+                translation=translator.translate(message)
+                return(str(translation))
+            case 'spagnolo':
+                translator=Translator(from_lang="italian",to_lang="spanish")
+                translation=translator.translate(message)
+                return(str(translation))
+            case 'tedesco':
+                translator=Translator(from_lang="italian",to_lang="german")
+                translation=translator.translate(message)
+                return(str(translation))
+            case 'francese':
+                translator=Translator(from_lang="italian",to_lang="french")
+                translation=translator.translate(message)
+                return(str(translation))
+            case 'cinese':
+                translator=Translator(from_lang="italian",to_lang="chinese")
+                translation=translator.translate(message)
+                return(str(translation))
+    except:
+        return("Mi spiace, c'è stato un errore nella traduzione.")

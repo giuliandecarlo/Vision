@@ -21,6 +21,7 @@ DICE_WORDS=['lancia un dado','puoi lanciare un dado']
 RAND_WORDS=['dimmi un numero casuale tra','estrai un numero tra','estrai un numero casuale tra']
 OFF_WORDS=['puoi spegnere il computer','spegni il computer','puoi spegnere il pc','spegni il pc']
 BATTERY_WORDS=['mi dai informazioni sulla batteria','qual è la percentuale della batteria','il computer è in carica','info sulla batteria']
+TRANSLATE_WORDS=['come si dice','traduci']
 
 def main():
     while True:
@@ -132,7 +133,16 @@ def checkSkill(text_in):
     for phrase in BATTERY_WORDS:
         if phrase in text_in:
             response(skills.batteryInfo())
-            return     
+            return 
+
+    for phrase in TRANSLATE_WORDS:
+        for phrase1 in WAKE_WORDS:
+            if phrase1 in text_in:
+                text_in=text_in.replace(phrase1,'')
+        if phrase in text_in:
+            text=text_in.replace(phrase,'')
+            response(skills.translate(text))
+            return    
 
     response(skills.notUnderstand())
 
