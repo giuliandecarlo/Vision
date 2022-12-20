@@ -7,8 +7,9 @@ from gtts import gTTS
 import yaml
 import datetime
 import skills
+import shoppingList
 
-config = yaml.safe_load(open('config/config.yml', 'rb'))
+#config = yaml.safe_load(open('config/config.yml', 'rb'))
 WAKE_WORDS= ['ciao visione','ciao vision','buongiorno visione','buongiorno vision','buonasera visione','buonasera vision','ehi visione','ehi vision','ok visione','ok vision']
 TIME_WORDS= ['ore','orario','che ora è']
 WEATHER_WORDS=['che tempo fa ','meteo']
@@ -23,6 +24,10 @@ OFF_WORDS=['puoi spegnere il computer','spegni il computer','puoi spegnere il pc
 BATTERY_WORDS=['mi dai informazioni sulla batteria','qual è la percentuale della batteria','il computer è in carica','info sulla batteria']
 TRANSLATE_WORDS=['come si dice','traduci']
 CALCULATOR_WORDS=['calcola','quanto fa','qual è il risultato di']
+ADD_LIST_WORDS=['aggiungi']
+REMOVE_ALL_LIST_WORDS=['rimuovi tutto dalla lista della spesa','svuota la lista della spesa','elimina tutto dalla lista della spesa']
+REMOVE_LIST_EL_WORDS=['rimuovi']
+GET_LIST_WORDS=['leggi la lista della spesa','puoi leggere la lista della spesa']
 
 def main():
     while True:
@@ -153,6 +158,39 @@ def checkSkill(text_in):
             text=text_in.replace(phrase,'')
             response(skills.calculator(text))
             return  
+
+    for phrase in ADD_LIST_WORDS:
+        for phrase1 in WAKE_WORDS:
+            if phrase1 in text_in:
+                text_in=text_in.replace(phrase1,'')
+        if phrase in text_in:
+            text=text_in.replace(phrase,'')
+            response(shoppingList.addList(text))
+            return
+
+    for phrase in REMOVE_ALL_LIST_WORDS:
+        for phrase1 in WAKE_WORDS:
+            if phrase1 in text_in:
+                text_in=text_in.replace(phrase1,'')
+        if phrase in text_in:
+            text=text_in.replace(phrase,'')
+            response(shoppingList.removeAll())
+            return
+
+    for phrase in REMOVE_LIST_EL_WORDS:
+        for phrase1 in WAKE_WORDS:
+            if phrase1 in text_in:
+                text_in=text_in.replace(phrase1,'')
+        if phrase in text_in:
+            text=text_in.replace(phrase,'')
+            response(shoppingList.removeList(text))
+            return
+
+
+    for phrase in GET_LIST_WORDS:
+        if phrase in text_in:
+            response(shoppingList.getList())
+            return 
 
     response(skills.notUnderstand())
 
