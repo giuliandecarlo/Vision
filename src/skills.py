@@ -111,18 +111,6 @@ def randNum(numString):
     except:
         return("C'è stato un errore. Riprova")
 
-def shutdownDevice():
-    os.system("sudo shutdown -h now")
-
-def batteryInfo():
-    battery=psutil.sensors_battery()
-    plugged=battery.power_plugged
-    percent=battery.percent
-    if plugged is True:
-        return("La batteria è in carica, e al momento è al "+str(percent)+" %")
-    else:
-        return("La batteria non è in carica, e al momento è al "+str(percent)+" %")
-
 def translate(text):
     try:
         words=text.split()
