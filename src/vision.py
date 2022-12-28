@@ -7,7 +7,7 @@ from gtts import gTTS
 import yaml
 import datetime
 import skills
-import shoppingList,pcUtilities
+import shoppingList,pcUtilities,dateAndTime
 
 #config = yaml.safe_load(open('config/config.yml', 'rb'))
 WAKE_WORDS= ['ciao visione','ciao vision','buongiorno visione','buongiorno vision','buonasera visione','buonasera vision','ehi visione','ehi vision','ok visione','ok vision']
@@ -81,7 +81,7 @@ def getAudio():
 def checkSkill(text_in):
     for phrase in TIME_WORDS:
         if phrase in text_in:
-            response(skills.getCurrentTime())
+            response(dateAndTime.getCurrentTime())
             return
 
     for phrase in WEATHER_WORDS:
@@ -101,7 +101,7 @@ def checkSkill(text_in):
             
     for phrase in DATE_WORDS:
         if phrase in text_in:
-            response(skills.getCurrentDate())
+            response(dateAndTime.getCurrentDate())
             return
 
     for phrase in HOW_MUCH_DAYS_WORDS:
@@ -110,7 +110,7 @@ def checkSkill(text_in):
                 text_in=text_in.replace(phrase1,'')
         if phrase in text_in:
             date=text_in.replace(phrase,'')
-            response(skills.howManyDays(date))
+            response(dateAndTime.howManyDays(date))
             return
     
     for phrase in CLOSE_WORDS:
@@ -201,7 +201,6 @@ def checkSkill(text_in):
 
     response(skills.notUnderstand())
 
-main()
 if __name__=='__main__':
     try:
         main()
