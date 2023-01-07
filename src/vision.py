@@ -7,7 +7,7 @@ from gtts import gTTS
 import yaml
 import datetime
 import skills
-import shoppingList,pcUtilities,dateAndTime
+import shoppingList,pcUtilities,dateAndTime,openLinks
 
 #config = yaml.safe_load(open('config/config.yml', 'rb'))
 WAKE_WORDS= ['ciao visione','ciao vision','buongiorno visione','buongiorno vision','buonasera visione','buonasera vision','ehi visione','ehi vision','ok visione','ok vision']
@@ -29,6 +29,7 @@ ADD_LIST_WORDS=['aggiungi']
 REMOVE_ALL_LIST_WORDS=['rimuovi tutto dalla lista della spesa','svuota la lista della spesa','elimina tutto dalla lista della spesa']
 REMOVE_LIST_EL_WORDS=['rimuovi']
 GET_LIST_WORDS=['leggi la lista della spesa','puoi leggere la lista della spesa']
+RICK_ROLL_WORDS=['rick roll','rickroll']
 
 def main():
     while True:
@@ -197,6 +198,11 @@ def checkSkill(text_in):
     for phrase in GET_LIST_WORDS:
         if phrase in text_in:
             response(shoppingList.getList())
+            return 
+
+    for phrase in RICK_ROLL_WORDS:
+        if phrase in text_in:
+            openLinks.rickRoll()
             return 
 
     response(skills.notUnderstand())

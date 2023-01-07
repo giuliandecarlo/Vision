@@ -14,7 +14,8 @@ Vision is a voice assistant, written in Python. Vision speaks in italian.
 * Provide information about battery (percentage and plugged/not-plugged).
 * Translate one word from italian to english/spanish/german/french/chinese.
 * Calculate the sum/difference/multiplication/division between two numbers.
-* Add,remove elements in a shopping list. 
+* Add,remove elements in a shopping list.
+* Open links. 
 
 ## Setup:
 ```
