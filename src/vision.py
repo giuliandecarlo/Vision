@@ -30,6 +30,8 @@ REMOVE_ALL_LIST_WORDS=['rimuovi tutto dalla lista della spesa','svuota la lista 
 REMOVE_LIST_EL_WORDS=['rimuovi']
 GET_LIST_WORDS=['leggi la lista della spesa','puoi leggere la lista della spesa']
 RICK_ROLL_WORDS=['rick roll','rickroll']
+YT_PLAY_WORDS=['riproduci su youtube']
+YT_SEARCH_WORDS=['cerca su youtube']
 
 def main():
     while True:
@@ -204,6 +206,26 @@ def checkSkill(text_in):
         if phrase in text_in:
             openLinks.rickRoll()
             return 
+
+    for phrase in YT_SEARCH_WORDS:
+        for phrase1 in WAKE_WORDS:
+            if phrase1 in text_in:
+                text_in=text_in.replace(phrase1,'')
+        if phrase in text_in:
+            text=text_in.replace(phrase,'')
+            response("Avvio la ricerca, ecco il risultato: ")
+            openLinks.ytSearch(text)
+            return
+
+    for phrase in YT_PLAY_WORDS:
+        for phrase1 in WAKE_WORDS:
+            if phrase1 in text_in:
+                text_in=text_in.replace(phrase1,'')
+        if phrase in text_in:
+            text=text_in.replace(phrase,'')
+            response("Avvio la riproduzione, ecco il risultato: ")
+            openLinks.ytPlay(text)
+            return
 
     response(skills.notUnderstand())
 
