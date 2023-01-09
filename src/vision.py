@@ -7,7 +7,7 @@ from gtts import gTTS
 import yaml
 import datetime
 import skills
-import shoppingList,pcUtilities,dateAndTime,openLinks
+import shoppingList,pcUtilities,dateAndTime,openLinks,exchangeRate
 
 #config = yaml.safe_load(open('config/config.yml', 'rb'))
 WAKE_WORDS= ['ciao visione','ciao vision','buongiorno visione','buongiorno vision','buonasera visione','buonasera vision','ehi visione','ehi vision','ok visione','ok vision']
@@ -32,6 +32,7 @@ GET_LIST_WORDS=['leggi la lista della spesa','puoi leggere la lista della spesa'
 RICK_ROLL_WORDS=['rick roll','rickroll']
 YT_PLAY_WORDS=['riproduci su youtube']
 YT_SEARCH_WORDS=['cerca su youtube']
+EXCHANGE_WORDS=['quanto equivale','quanto equivalgono',"quanto vale","quanto valgono"]
 
 def main():
     while True:
@@ -225,6 +226,15 @@ def checkSkill(text_in):
             text=text_in.replace(phrase,'')
             response("Avvio la riproduzione, ecco il risultato: ")
             openLinks.ytPlay(text)
+            return
+
+    for phrase in EXCHANGE_WORDS:
+        for phrase1 in WAKE_WORDS:
+            if phrase1 in text_in:
+                text_in=text_in.replace(phrase1,'')
+        if phrase in text_in:
+            text=text_in.replace(phrase,'')
+            response(exchangeRate.exchange(text))
             return
 
     response(skills.notUnderstand())
