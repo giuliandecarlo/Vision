@@ -16,35 +16,14 @@ def exchange(text):
             fromCurrency='EUR'
             x=1
             n=str(words[0].replace("€",""))
-
-        if("$" in words[0]):
+        elif("$" in words[0]):
             fromCurrency='USD'
             x=1
             n=str(words[0].replace("$",""))        
         else:
-            match(words[1]):
-                case 'euro':
-                    fromCurrency='EUR'
-                case 'dollari'|'dollaro':
-                    fromCurrency='USD'
-                case 'sterline'|'sterlina':
-                    fromCurrency=''
-                case 'yen':
-                    fromCurrency='JPY'
-                case 'franchi'|'franco':
-                    fromCurrency='CHF'
+            fromCurrency=codeCurrency(words[1])
             n=str(words[0])
-        match(words[3-x]):
-            case 'euro':
-                toCurrency='EUR'
-            case 'dollari'|'dollaro':
-                toCurrency='USD'
-            case 'sterline'|'sterlina':
-                toCurrency=''
-            case 'yen':
-                toCurrency='JPY'
-            case 'franchi'|'franco':
-                toCurrency='CHF'
+            toCurrency=codeCurrency(words[3-x])
 
         url = "https://api.apilayer.com/exchangerates_data/convert?to="+toCurrency+"&from="+fromCurrency+"&amount="+n
         API_KEY=open('exchange_api.txt','r').read()
@@ -54,9 +33,25 @@ def exchange(text):
         }
         response = requests.request("GET", url, headers=headers, data = payload).json()
         val = response['result']
+        val=round(val,2)
         val=str(val).replace(".",",")
-        return("Equivalgono a "+str(val)+" "+str(words[3-x]))
+        return("Equivalgono a circa "+str(val)+" "+str(words[3-x]))
     except:
         return("C'è stato un errore nella conversione, riprova.")
+
+def codeCurrency(text):
+       match(text):
+            case 'euro':
+                return 'EUR'
+            case 'dollari'|'dollaro':
+                return 'USD'
+            case 'sterline'|'sterlina':
+                return 'GBP'
+            case 'yen':
+                return 'JPY'
+            case 'franchi'|'franco':
+                return 'CHF'
+            case _:
+                return ''
 
 
