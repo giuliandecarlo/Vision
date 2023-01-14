@@ -11,9 +11,12 @@ def getCurrentTime():
         text_out="è l'una"
     else:
         text_out="sono le "+str(hour)
-
-    text_out=text_out+" e "+str(minute)+" minuti "
-    return(text_out)
+        
+    if(minute==0):
+        return text_out
+    else:
+        text_out=text_out+" e "+str(minute)+" minuti "
+        return(text_out)
 
 
 def getCurrentDate():
