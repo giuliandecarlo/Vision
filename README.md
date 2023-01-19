@@ -16,7 +16,8 @@ Vision is a voice assistant, written in Python. Vision speaks in italian.
 * Calculate the sum/difference/multiplication/division between two numbers.
 * Add,remove elements in a shopping list.
 * Search and play Youtube videos.
-* calculate exchange rates (EUR-USD-JPY-GBP-CHF)
+* Do a Google search.
+* calculate exchange rates (EUR-USD-JPY-GBP-CHF).
 
 ## Setup:
 ```

@@ -11,6 +11,22 @@ def getUrlYt(search_keyword): #Search on yt and returns the first result
     url="https://www.youtube.com/watch?v=" + video_ids[0]
     return url
 
+def googleSearch(keyword):
+    try:
+        url="https://www.google.com/search?q="
+        keyword=keyword.replace("cerca su google","")
+        keyword=keyword.replace(" ","+")
+        print("TEST:"+keyword)
+        if(keyword=="" or keyword=="+"):
+            openLink("https://www.google.com")
+            return
+        url=url + keyword
+        openLink(url)
+        return
+    except:
+        print("Errore.")
+        return
+
 def ytPlay(keyword):
     try:
         keyword=keyword.replace("riproduci su youtube","")
@@ -23,9 +39,14 @@ def ytPlay(keyword):
 
 def ytSearch(keyword):
     try:
+        url="https://www.youtube.com/results?search_query="
         keyword=keyword.replace("riproduci su youtube","")
         keyword=keyword.replace(" ","+")
-        url="https://www.youtube.com/results?search_query=" + keyword
+        print("TEST:"+keyword)
+        if(keyword=="" or keyword=="+"):
+            openLink("https://www.youtube.com")
+            return
+        url=url + keyword
         openLink(url)
         return
     except:
@@ -35,4 +56,3 @@ def ytSearch(keyword):
 
 def rickRoll():
     openLink('https://www.youtube.com/watch?v=dQw4w9WgXcQ')
-

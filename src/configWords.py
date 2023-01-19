@@ -20,4 +20,5 @@ GET_LIST_WORDS=['leggi la lista della spesa','puoi leggere la lista della spesa'
 RICK_ROLL_WORDS=['rick roll','rickroll']
 YT_PLAY_WORDS=['riproduci su youtube']
 YT_SEARCH_WORDS=['cerca su youtube']
+GOOGLE_SEARCH_WORDS=['cerca su google']
 EXCHANGE_WORDS=['quanto equivale','quanto equivalgono',"quanto vale","quanto valgono"]

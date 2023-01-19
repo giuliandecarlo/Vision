@@ -214,6 +214,16 @@ def checkSkill(text_in):
             response(exchangeRate.exchange(text))
             return
 
+    for phrase in GOOGLE_SEARCH_WORDS:
+        for phrase1 in WAKE_WORDS:
+            if phrase1 in text_in:
+                text_in=text_in.replace(phrase1,'')
+        if phrase in text_in:
+            text=text_in.replace(phrase,'')
+            response("Avvio la ricerca, ecco il risultato: ")
+            openLinks.googleSearch(text)
+            return
+
     response(skills.notUnderstand())
 
 if __name__=='__main__':
